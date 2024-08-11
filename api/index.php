@@ -7,24 +7,29 @@ $data = [];
     if(isset($_GET['option']))
     {
         $option = $_GET['option'];
-        if($_GET['option'] == 'status')
+
+        if($option == 'status')
         {
             $data['status'] = 'success';
             $data['dado'] = 'aqui vc recebera os dados e trata ele';
+            
         }
-        if($option == 'number')
+        else if($option == 'number')
         {
             $max = $_GET['max'] ?? "";
             $min = $_GET['min'] ?? "";
             $quantidade = $_GET['quantidade'] ?? "";
            
-            response( randomNumber($data,$max,$min,$quantidade));
+            $data = randomNumber($data,$max,$min,$quantidade);
+
+        }else{
+            $data['erro'] = "we didn 't find this section";
         }
     }else{
-        $data['status'] = 'ERROR';
+        $data['erro'] = 'ERROR not option';
     }
 
-
+    response($data);
 //response
 
     function response($data_response)
