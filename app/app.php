@@ -2,8 +2,8 @@
 //criando a const da url
     const API_BASE = "http://localhost/php%20apis/api/?option=";
 //a option que deve ser passada
-    $option = "status";
-
+    $option = "number&min=10&max=2000&quantidade=11";
+    //$option = 'status';
     $response = getdados($option);
     echo "<h3>response</h3>";
     echo "<pre>";
