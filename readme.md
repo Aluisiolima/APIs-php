@@ -6,6 +6,7 @@ Essa é uma API desenvolvida em PHP para fins de estudo, com uma arquitetura bas
 ## Tecnologias Utilizadas
 - **PHP**: Linguagem de programação principal.
 - **MySQL**: Banco de dados relacional para armazenamento de informações.
+- **Apache**: Um servidor para a ultizacao do mod-rewrite
 - **Insomnia**: Ferramentas para testes de rotas.
 
 ## Estrutura do Projeto
@@ -76,7 +77,7 @@ Exemplo:
 ```
 
 ## Como Usar a API
-1. Configure o banco de dados no arquivo `.env`.
+1. Configure o banco de dados no arquivo `.env` com as variaveis em `.env.example` e configure com as variavel adquadas para seu ambiente.
 2. Crie a tabela `user` no MySQL:
 
 ```sql
@@ -87,13 +88,11 @@ CREATE TABLE `user` (
 );
 ```
 
-3. Inicie um servidor PHP:
-```bash
-php -S localhost:8000
-```
+3. Iniciando a api:
+- Mova os arquivos para o repositorio do seu servidor Apache `/var/www/html/` ou o do seu servidor instalado 
 
 4. Acesse as rotas no navegador ou utilizando ferramentas como Postman ou Insomnia:
-   - `GET: /`: e vera  `Hello word` corfimando que sua aplicacao funcionando.
+  - `GET: localhost:8080/`: e vera  `Hello word` corfimando que sua aplicacao funcionando.
 
 
 

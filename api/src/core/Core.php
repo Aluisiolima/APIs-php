@@ -41,14 +41,14 @@
                     [$controller, $action] = explode("@", $route["action"]);
                     $controller = $prefixoController . $controller;
                     $extendController = new $controller();
-                    $extendController->$action();
+                    $extendController->$action($this->req, $this->res);
                     return;
                 }
             }
             if (!$routeFound) {
                 $controller = $prefixoController . "NotFoundController";
                 $extendController = new $controller();
-                $extendController->index();
+                $extendController->index($this->req, $this->res);
             }
         }
     }
