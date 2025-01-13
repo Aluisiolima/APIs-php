@@ -6,6 +6,7 @@
         "/src/http/Resquest.php",
         "/src/http/Response.php",
         "/src/utils/Validate.php",
+        "/src/http/JWT.php",
         "/src/controller/NotFoundController.php",
         "/src/model/Database.php",
         "/src/controller/UserController.php",
