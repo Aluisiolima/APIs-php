@@ -65,4 +65,37 @@
                 return ["error"=> $e->getMessage()];
             }
         }
+        public function edit($data, $id)
+        {
+            try {
+                $pdo = $this->getConnect();
+                $sql = "UPDATE user SET nome = ? WHERE id = ?;";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    $data["nome"],
+                    $id
+                ]);
+                
+                return [
+                    "sucess" => "user editado com sucesso!!"
+                ];
+            } catch (PDOException $e) {
+                return ["error"=> $e->getMessage()];
+            }
+        }
+        public function remove($id)
+        {
+            try {
+                $pdo = $this->getConnect();
+                $sql = "DELETE FROM user WHERE id = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$id]);
+                
+                return [
+                    "sucess" => "User deletado com sucesso!!!!"
+                ];
+            } catch (PDOException $e) {
+                return ["error"=> $e->getMessage()];
+            }
+        }
     }

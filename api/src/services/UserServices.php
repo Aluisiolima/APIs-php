@@ -73,4 +73,42 @@
                 return ["error"=> $e->getMessage()];
             }
         }
+        public function editeUser($data, $auth)
+        {
+            try{
+                if(isset($auth["error"])) return ["unauthorized" => "Voce nao passou um Token por favor faça login!!!"];
+
+                $token = $this->jwt->verify($auth);
+                if(!$token) return ["unauthorized"=> "Seu token e Invalido  por favor faça login!!!"];
+
+                $dados = $this->validate->validate([
+                    "nome"  => $data["nome"]  ?? "",
+                ]);
+
+                $user = $this->userModel->edit($dados, $token["id"]);
+
+                return $user;
+            }catch (Exception $e){
+                return ["error" => $e->getMessage()];
+            } catch (PDOException $e){
+                return ["error" => $e->getMessage()];
+            }
+        }
+        public function removeUser($auth)
+        {
+            try{
+                if(isset($auth["error"])) return ["unauthorized" => "Voce nao passou um Token por favor faça login!!!"];
+
+                $token = $this->jwt->verify($auth);
+                if(!$token) return ["unauthorized"=> "Seu token e Invalido  por favor faça login!!!"];
+
+                $user = $this->userModel->remove($token["id"]);
+
+                return $user;
+            }catch (Exception $e){
+                return ["error" => $e->getMessage()];
+            } catch (PDOException $e){
+                return ["error" => $e->getMessage()];
+            }
+        }
     }

@@ -54,4 +54,40 @@
 
             $response->json($user, 200);
         }
+        public function editeUser(Resquest $resquest, Response $response)
+        {
+            $auth = $resquest->getAuth();
+            $body = $resquest->getBody();
+
+            $user = $this->userServices->editeUser($body, $auth);
+
+            if (isset($user["unauthorized"])) {
+                $response->json(["error"=> $user["unauthorized"]], 401);
+                return;
+            }
+            if (isset($user["error"])) {
+                $response->json(["error"=> $user["error"]], 400);
+                return;
+            }
+
+            $response->json($user, 200);
+        }
+        public function removeUser(Resquest $resquest, Response $response)
+        {
+            $auth = $resquest->getAuth();
+            $body = $resquest->getBody();
+
+            $user = $this->userServices->removeUser($auth);
+
+            if (isset($user["unauthorized"])) {
+                $response->json(["error"=> $user["unauthorized"]], 401);
+                return;
+            }
+            if (isset($user["error"])) {
+                $response->json(["error"=> $user["error"]], 400);
+                return;
+            }
+
+            $response->json($user, 200);
+        }
     }
